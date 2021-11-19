@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
 import com.finacus.TestCase.ExcelReadingMethods;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class LoginDemo {
-
+public class LoginDemo 
+{
 	WebDriver driver;
 	ChromeOptions options;
 	String appURL = "https://staging.travalab.com/login";
@@ -24,9 +24,10 @@ public class LoginDemo {
 	String sheetname = "login";
 
 	@Test(dataProvider = "userdata")
-	public void toLogin(String username, String password) throws InterruptedException {
+	public void toLogin(String username, String password) throws InterruptedException 
+	{
 
-		System.out.println("In Login Method!!!!");
+		System.out.println("In Login Method");
 
 		System.out.println("username is: " + username);
 		System.out.println("password is: " + password);
@@ -39,8 +40,12 @@ public class LoginDemo {
 		System.out.println("Click on Login button");
 
 		Thread.sleep(2000);
+		driver.findElement(By.xpath("driver.findElement(By.xpath(\"//input[@name='commit']\")).click();")).click();
+		driver.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
+
+		Thread.sleep(2000);
 	}
-		/*
+	/*
 		System.out.println("Alert flag is: " + alertExist());
 
 		if (alertExist() == true) {
@@ -71,45 +76,52 @@ public class LoginDemo {
 		}
 		return alertFlag;
 	}
-		 */
-		@BeforeClass
-		public void setup() {
-			System.out.println("In setup method!!!!");
+	 */
 
-			WebDriverManager.chromedriver().setup();
-			options = new ChromeOptions();
-			options.addArguments("--ignore-certificate-errors");
-			driver = new ChromeDriver(options);
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			driver.get(appURL);
-			driver.manage().window().maximize();
-		}
+	@BeforeClass 
+	public void setup() 
+	{
+		System.out.println("In setup method");
+		WebDriverManager.chromedriver().setup();
+		options = new ChromeOptions();
+		options.addArguments("--ignore-certificate-errors");
+		driver = new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get(appURL);
+		driver.manage().window().maximize();
+	}
 
-		@AfterClass
-		public void tearDown() {
-			System.out.println("In tear down method");
-			if (driver != null) {
-				driver.close();
-				driver.quit();
+	@DataProvider(name = "userdata")
+	public String[][] getData() throws IOException 
+	{
+		System.out.println("In get data method");
+
+		int rowcount = ExcelReadingMethods.getRowCount(inputFilename, sheetname);
+		System.out.println("Rowcount is: " + rowcount);
+
+		int cellcount = ExcelReadingMethods.getCellData(inputFilename, sheetname, 0);
+		System.out.println("Cell count is: " + cellcount);
+
+		String loginData[][] = new String[rowcount][cellcount];
+		for (int row = 1; row <= rowcount; row++) 
+		{
+			for (int cell = 0; cell < cellcount; cell++)
+			{
+				loginData[row - 1][cell] = ExcelReadingMethods.getCellData(inputFilename, sheetname, row, cell);
 			}
 		}
+		return loginData;
+	}
 
-		@DataProvider(name = "userdata")
-		public String[][] getData() throws IOException {
-			System.out.println("In get data method!!!!");
-
-			int rowcount = ExcelReadingMethods.getRowCount(inputFilename, sheetname);
-			System.out.println("Rowcount is: " + rowcount);
-
-			int cellcount = ExcelReadingMethods.getCellData(inputFilename, sheetname, 0);
-			System.out.println("Cell count is: " + cellcount);
-
-			String loginData[][] = new String[rowcount][cellcount];
-			for (int row = 1; row <= rowcount; row++) {
-				for (int cell = 0; cell < cellcount; cell++) {
-					loginData[row - 1][cell] = ExcelReadingMethods.getCellData(inputFilename, sheetname, row, cell);
-				}
-			}
-			return loginData;
+	@AfterClass
+	public void tearDown() 
+	{
+		System.out.println("In tear down method");
+		if (driver != null)
+		{
+			driver.close();
+			driver.quit();
 		}
 	}
+
+}

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.Agentapp">
+      <class name="com.finacus.TestCase.LoginDemo">
         <methods>
+          <include name="setup"/>
           <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="LoginTC01"/>
+          <include name="toLogin" invocation-numbers="1 2"/>
         </methods>
-      </class> <!-- tests.Agentapp -->
+      </class> <!-- com.finacus.TestCase.LoginDemo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
