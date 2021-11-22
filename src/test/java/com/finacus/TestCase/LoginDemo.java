@@ -17,7 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LoginDemo 
 {
-	WebDriver driver;
+	WebDriver d;
 	ChromeOptions options;
 	String appURL = "https://staging.travalab.com/login";
 	String inputFilename = "./" + "src\\test\\java\\com\\finacus\\TestCase\\travalab.xlsx";
@@ -32,19 +32,20 @@ public class LoginDemo
 		System.out.println("username is: " + username);
 		System.out.println("password is: " + password);
 
-		driver.findElement(By.id("user_email")).sendKeys(username);
+		d.findElement(By.id("user_email")).sendKeys(username);
 		System.out.println("Enter Username");
-		driver.findElement(By.id("user_password")).sendKeys(password);
+		d.findElement(By.id("user_password")).sendKeys(password);
 		System.out.println("Enter Password");
-		driver.findElement(By.xpath("//input[@name='commit']")).click();
+		d.findElement(By.xpath("//input[@name='commit']")).click();
 		System.out.println("Click on Login button");
 
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("driver.findElement(By.xpath(\"//input[@name='commit']\")).click();")).click();
-		driver.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
+		//d.findElement(By.xpath("driver.findElement(By.xpath(\"//input[@name='commit']\")).click();")).click();
+		//d.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
 
 		Thread.sleep(2000);
 	}
+	
 	/*
 		System.out.println("Alert flag is: " + alertExist());
 
@@ -85,10 +86,10 @@ public class LoginDemo
 		WebDriverManager.chromedriver().setup();
 		options = new ChromeOptions();
 		options.addArguments("--ignore-certificate-errors");
-		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.get(appURL);
-		driver.manage().window().maximize();
+		d = new ChromeDriver(options);
+		d.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		d.get(appURL);
+		d.manage().window().maximize();
 	}
 
 	@DataProvider(name = "userdata")
@@ -117,10 +118,10 @@ public class LoginDemo
 	public void tearDown() 
 	{
 		System.out.println("In tear down method");
-		if (driver != null)
+		if (d != null)
 		{
-			driver.close();
-			driver.quit();
+			d.close();
+			d.quit();
 		}
 	}
 
