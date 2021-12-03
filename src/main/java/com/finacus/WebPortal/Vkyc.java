@@ -15,32 +15,29 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class Vkyc extends Vkycxpath
-{
+public class Vkyc extends Vkycxpath {
 
 	public static WebDriver d;
 
 	JavascriptExecutor js = (JavascriptExecutor) d;
 
 	@BeforeSuite
-	public void setup() throws InterruptedException
-	{
-		System.setProperty("webdriver.chrome.driver","E://FIN_MobiConnect//chromedriver_win32_94//chromedriver.exe");
+	public void setup() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "E://FIN_MobiConnect//chromedriver_win32_94//chromedriver.exe");
 
-		d= new ChromeDriver();
+		d = new ChromeDriver();
 
-		//ChromeOptions options = new ChromeOptions();
-		//options.addArguments("window-size=1400,800");
-		//options.addArguments("headless");
+		// ChromeOptions options = new ChromeOptions();
+		// options.addArguments("window-size=1400,800");
+		// options.addArguments("headless");
 
-		//d.manage().window().maximize();
+		// d.manage().window().maximize();
 		d.manage().deleteAllCookies();
 		d.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		d.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		//d.get("http://192.168.4.46/videokyc/");
+		// d.get("http://192.168.4.46/videokyc/");
 		d.get("http://192.168.4.105/Vsblinet/");
-
 
 		System.out.println("You are IB page");
 		String url = "http://192.168.4.105/Vsblinet/";
@@ -51,12 +48,9 @@ public class Vkyc extends Vkycxpath
 
 	}
 
-
-	@Test (priority=1)
-	public void TC1() throws InterruptedException, IOException
-	{
-		try
-		{
+	@Test(priority = 1)
+	public void TC1() throws InterruptedException, IOException {
+		try {
 			System.out.println("______________________________________________________________________________");
 			d.findElement(By.xpath(VKYC)).click();
 			System.out.println("Click on VKYC menu");
@@ -65,7 +59,7 @@ public class Vkyc extends Vkycxpath
 			System.out.println("Click on Continue button");
 			Thread.sleep(300);
 			d.findElement(By.xpath(MobileNumber)).sendKeys("9137011410");
-			System.out.println("Enter Mobile Number"); //MobileSubmit
+			System.out.println("Enter Mobile Number"); // MobileSubmit
 			Thread.sleep(300);
 			d.findElement(By.xpath(MobileSubmit)).click();
 			System.out.println("Click On Submit button");
@@ -89,31 +83,28 @@ public class Vkyc extends Vkycxpath
 			Thread.sleep(300);
 		}
 
-		catch(Exception e)
-		{
+		catch (Exception e) {
 			Thread.sleep(400);
 			System.out.println("Get the Screenshot");
 
-			TakesScreenshot scrShot1 =((TakesScreenshot)d);
-			File SrcFile1=scrShot1.getScreenshotAs(OutputType.FILE);
-			File DestFile1=new File("E://FIN_MobiConnect//error.png");
+			TakesScreenshot scrShot1 = ((TakesScreenshot) d);
+			File SrcFile1 = scrShot1.getScreenshotAs(OutputType.FILE);
+			File DestFile1 = new File("E://FIN_MobiConnect//error.png");
 			FileUtils.copyFile(SrcFile1, DestFile1);
 		}
 
 	}
 
-	@Test (priority=2)
-	public void TC2() throws InterruptedException, IOException
-	{
+	@Test(priority = 2)
+	public void TC2() throws InterruptedException, IOException {
 
-		try
-		{
-			//d.get("http://192.168.4.46/videokyc/CustomerInfo");
+		try {
+			// d.get("http://192.168.4.46/videokyc/CustomerInfo");
 
 			d.findElement(By.id(Title)).click();
 			System.out.println("Click on Title");
 			d.findElement(By.xpath(TitleMr)).click();
-			//d.findElement(By.xpath(Title)).sendKeys(Keys.ARROW_DOWN);
+			// d.findElement(By.xpath(Title)).sendKeys(Keys.ARROW_DOWN);
 			System.out.println("Select Title");
 			Thread.sleep(200);
 
@@ -127,13 +118,13 @@ public class Vkyc extends Vkycxpath
 
 			d.findElement(By.xpath(Gender)).click();
 			d.findElement(By.xpath(Gendermale)).click();
-			//d.findElement(By.xpath(Gender)).sendKeys(Keys.ARROW_DOWN);
+			// d.findElement(By.xpath(Gender)).sendKeys(Keys.ARROW_DOWN);
 			System.out.println("Select Gender");
 			Thread.sleep(200);
 
 			d.findElement(By.xpath(Status)).click();
 			d.findElement(By.xpath(Statussingle)).click();
-			//d.findElement(By.xpath(Status)).sendKeys(Keys.ARROW_DOWN);
+			// d.findElement(By.xpath(Status)).sendKeys(Keys.ARROW_DOWN);
 			System.out.println("Select Status");
 			Thread.sleep(200);
 
@@ -154,14 +145,14 @@ public class Vkyc extends Vkycxpath
 			System.out.println("Enter Locality");
 			Thread.sleep(200);
 
-			/*d.findElement(By.xpath(Stateselect)).click();
-		//d.findElement(By.xpath(state)).sendKeys(Keys.ARROW_DOWN);
-		System.out.println("Select State");
-		Thread.sleep(200);
+			/*
+			 * d.findElement(By.xpath(Stateselect)).click();
+			 * //d.findElement(By.xpath(state)).sendKeys(Keys.ARROW_DOWN);
+			 * System.out.println("Select State"); Thread.sleep(200);
 			 */
 
 			d.findElement(By.xpath(City)).click();
-			//d.findElement(By.xpath(City)).sendKeys(Keys.ARROW_DOWN);
+			// d.findElement(By.xpath(City)).sendKeys(Keys.ARROW_DOWN);
 			System.out.println("Select City");
 			Thread.sleep(200);
 
@@ -177,31 +168,25 @@ public class Vkyc extends Vkycxpath
 			System.out.println("Enter Landmark");
 			Thread.sleep(200);
 
-
 			d.findElement(By.xpath(NextButton)).click();
 			System.out.println("Enter nextButton");
 
 			Thread.sleep(3000);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println("----------------------------------------");
 			Thread.sleep(4000);
 			System.out.println("Get the Screenshot");
 
-			TakesScreenshot scrShot1 =((TakesScreenshot)d);
-			File SrcFile1=scrShot1.getScreenshotAs(OutputType.FILE);
-			File DestFile1=new File("E://FIN_MobiConnect//KYC1.png");
+			TakesScreenshot scrShot1 = ((TakesScreenshot) d);
+			File SrcFile1 = scrShot1.getScreenshotAs(OutputType.FILE);
+			File DestFile1 = new File("E://FIN_MobiConnect//KYC1.png");
 			FileUtils.copyFile(SrcFile1, DestFile1);
 		}
 
 	}
 
-	
-	
 	@AfterSuite
-	public void CloseApp()
-	{
+	public void CloseApp() {
 		d.close();
 		System.out.println("Application Close");
 	}

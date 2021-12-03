@@ -22,7 +22,21 @@ public class LoginDemo
 	String appURL = "https://staging.travalab.com/login";
 	String inputFilename = "./" + "src\\test\\java\\com\\finacus\\TestCase\\travalab.xlsx";
 	String sheetname = "login";
-
+	
+	@BeforeClass 
+	public void setup() 
+	{
+		WebDriverManager.chromedriver().setup();
+		options = new ChromeOptions();
+		
+		options.addArguments("--ignore-certificate-errors");
+		d = new ChromeDriver(options);
+		d.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		d.get(appURL);
+		d.manage().window().maximize();
+	 
+	}
+	
 	@Test(dataProvider = "userdata")
 	public void toLogin(String username, String password) throws InterruptedException 
 	{
@@ -38,12 +52,13 @@ public class LoginDemo
 		System.out.println("Enter Password");
 		d.findElement(By.xpath("//input[@name='commit']")).click();
 		System.out.println("Click on Login button");
-
-		Thread.sleep(2000);
+	 
+		Thread.sleep(200);
 		//d.findElement(By.xpath("driver.findElement(By.xpath(\"//input[@name='commit']\")).click();")).click();
 		//d.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
 
 		Thread.sleep(2000);
+		System.out.println("User on Dashboard");
 	}
 	
 	/*
@@ -79,18 +94,7 @@ public class LoginDemo
 	}
 	 */
 
-	@BeforeClass 
-	public void setup() 
-	{
-		System.out.println("In setup method");
-		WebDriverManager.chromedriver().setup();
-		options = new ChromeOptions();
-		options.addArguments("--ignore-certificate-errors");
-		d = new ChromeDriver(options);
-		d.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		d.get(appURL);
-		d.manage().window().maximize();
-	}
+	
 
 	@DataProvider(name = "userdata")
 	public String[][] getData() throws IOException 
@@ -113,11 +117,11 @@ public class LoginDemo
 		}
 		return loginData;
 	}
-
+	
 	@AfterClass
 	public void tearDown() 
 	{
-		System.out.println("In tear down method");
+		System.out.println("In tear down method ___");
 		if (d != null)
 		{
 			d.close();
