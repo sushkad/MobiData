@@ -13,12 +13,14 @@ public class FairQAXpath {
 	// xpath = 	/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.Button[1]
 	
 	
-	public static final String username = "com.bankwithfair.fairpayandroid.qa:id/edtUserName";
-	public static final String password = "com.bankwithfair.fairpayandroid.qa:id/edtPassword";
-	public static final String Login = "com.bankwithfair.fairpayandroid.qa:id/btnLogin";
+	//public static final String username = "com.bankwithfair.fairpayandroid.qa:id/edtUserName";
+	public static final String Username = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.EditText[1]";	
+	public static final String Password = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.EditText[2]";
+	public static final String Login = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.Button";
 	
 	/*
 	public static final String FYP = "com.bankwithfair.fairpayandroid.qa:id/textForgotPassword";
+	
 	public static final String Email = "email";
 	public static final String Email = "email";
 	public static final String Email = "email";

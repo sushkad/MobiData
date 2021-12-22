@@ -19,17 +19,17 @@ public class Utility {
 			TakesScreenshot ts = (TakesScreenshot)driver;
 
 			File source = ts.getScreenshotAs(OutputType.FILE);
-			
+
 			String dest = "E:\\FIN_MobiConnect\\screenshots\\VSBL"+scname+".png";
-			
+
 			File destination = new File(dest);
-			
+
 			FileUtils.copyFile(source, destination);
-			
+
 			System.out.println("Screenshot Taken");
-			
+
 			return dest;
-			
+
 		}
 		catch (Exception e)
 		{
